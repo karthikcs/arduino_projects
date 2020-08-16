@@ -10,17 +10,17 @@
 #include <NewPing.h>
 #include <Servo.h> 
 
-#define TRIG_PIN A0 
-#define ECHO_PIN A1 
+#define TRIG_PIN A0   // Ultrasonic sensor
+#define ECHO_PIN A1   // Ultrasonic sensor
 #define MAX_DISTANCE 200 
 #define MAX_SPEED 150 // This defines the the maximum speed of the car
 #define MAX_SPEED_OFFSET 20
 
 //Sensors 
 
-int MID_IR = 16;
-int RIGHT_IR = 17;
-int LEFT_IR = 18;
+int MID_IR = 16;   //A2 Pin
+int RIGHT_IR = 17; //A3 Pin
+int LEFT_IR = 18;  //A4 Pin
 
 NewPing sonar(TRIG_PIN, ECHO_PIN, MAX_DISTANCE); 
 
@@ -39,12 +39,6 @@ void setup() {
   myservo.attach(10);  
   myservo.write(85); 
   delay(2000);
-  distance = readPing();
-  delay(100);
-  distance = readPing();
-  delay(100);
-  distance = readPing();
-  delay(100);
   distance = readPing();
   delay(100);
 
@@ -68,14 +62,12 @@ void loop() {
 //    Serial.println("LEFT Senor detected and Onstacle");
     moveStop();
     turnRight();
-//    moveStop();
     
  } else if(digitalRead(RIGHT_IR) != 1)
  {
 //    Serial.println("RIGHT Senor detected and Onstacle");
     moveStop();
     turnLeft();
-//    moveStop();
     
  }else if(digitalRead(MID_IR) != 1)
  { 
